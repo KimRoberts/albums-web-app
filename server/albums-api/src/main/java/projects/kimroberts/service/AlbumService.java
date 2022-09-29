@@ -15,7 +15,7 @@ public class AlbumService {
 	private IAlbumDao albumDao;
 	
 	@Autowired
-	public AlbumService(@Qualifier("album-postgres") IAlbumDao albumDao) {
+	public AlbumService(@Qualifier("albums-postgres") IAlbumDao albumDao) {
 		this.albumDao = albumDao;
 	}
 	
