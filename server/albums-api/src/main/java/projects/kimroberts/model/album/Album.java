@@ -1,4 +1,4 @@
-package projects.kimroberts.model;
+package projects.kimroberts.model.album;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

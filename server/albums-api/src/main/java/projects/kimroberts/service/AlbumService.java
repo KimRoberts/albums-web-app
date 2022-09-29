@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import projects.kimroberts.dao.IAlbumDao;
-import projects.kimroberts.model.Album;
+import projects.kimroberts.model.album.Album;
 
 @Service
 public class AlbumService {

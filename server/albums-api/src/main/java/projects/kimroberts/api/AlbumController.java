@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import projects.kimroberts.model.Album;
+import projects.kimroberts.model.album.Album;
 import projects.kimroberts.service.AlbumService;
 
 @RestController

@@ -1,0 +1,9 @@
+app:
+  datasource:
+    jdbc-url: jdbc:postgresql://localhost:5444/albums-db
+    username: postgres
+    password: Esaradev2!
+    pool-size: 30
+    
+server:
+  port: 8080
