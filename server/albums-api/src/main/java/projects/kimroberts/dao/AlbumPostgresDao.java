@@ -15,6 +15,8 @@ public class AlbumPostgresDao implements IAlbumDao {
 	
 	private JdbcTemplate jdbcTemplate;
 	
+	//test
+	
 	@Autowired
 	public AlbumPostgresDao(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
