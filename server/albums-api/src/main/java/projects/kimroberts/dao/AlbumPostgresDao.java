@@ -65,8 +65,11 @@ public class AlbumPostgresDao implements IAlbumDao {
 
 	@Override
 	public List<Album> searchAlbums(String searchPattern) {
-		// TODO Auto-generated method stub
-		return null;
+		String query = String.format("SELECT * FROM albums WHERE LOWER(title) LIKE LOWER(\'%%%s%%\') OR LOWER(artist) LIKE LOWER(\'%%%s%%\')",
+									searchPattern,
+									searchPattern);
+		System.out.println("\n\n\n" + query + "\n\n\n");
+		return jdbcTemplate.query(query, new AlbumRowMapper());
 	}
 
 	@Override

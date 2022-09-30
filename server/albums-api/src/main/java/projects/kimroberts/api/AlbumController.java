@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import projects.kimroberts.model.album.Album;
@@ -28,8 +29,11 @@ public class AlbumController {
 	}
 	
 	@GetMapping
-	public List<Album> getAllAlbums() {
-		return albumService.getAllAlbums();
+	public List<Album> getAllAlbums(@RequestParam(name="search", required=false) String searchPattern) {
+		if (searchPattern == null) {
+			return albumService.getAllAlbums();
+		}
+		return albumService.searchAlbums(searchPattern);
 	}
 	
 	@GetMapping("/{id}")
@@ -59,5 +63,6 @@ public class AlbumController {
 	public Album createAlbum(@RequestBody Album album) {
 		return albumService.createAlbum(album);
 	}
+	
 
 }
