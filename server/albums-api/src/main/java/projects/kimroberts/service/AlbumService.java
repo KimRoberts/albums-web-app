@@ -22,5 +22,25 @@ public class AlbumService {
 	public List<Album> getAllAlbums() {
 		return albumDao.getAllAlbums();
 	}
+	
+	public Album getAlbumById(int id) {
+		return albumDao.getAlbumById(id);
+	}
+
+	public Album updateAlbumById(int id, Album album) {
+		return albumDao.updateAlbumById(id, album);
+	}
+
+	public void deleteAlbumById(int id) {
+		albumDao.deleteAlbumById(id);
+	}
+
+	public List<Album> searchAlbums(String searchPattern) {
+		return albumDao.searchAlbums(searchPattern);
+	}
+	
+	public Album createAlbum(Album album) {
+		return albumDao.createAlbum(album);
+	}
 
 }
