@@ -2,6 +2,7 @@ package projects.kimroberts.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -30,8 +31,12 @@ public class AlbumPostgresDao implements IAlbumDao {
 
 	@Override
 	public Album getAlbumById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		String query = String.format("SELECT * FROM albums WHERE id=%d", id);
+		List<Album> albums = jdbcTemplate.query(query, new AlbumRowMapper());
+		if (albums.size() == 0) {
+			throw new NoSuchElementException();
+		}
+		return albums.get(0);
 	}
 
 	@Override
