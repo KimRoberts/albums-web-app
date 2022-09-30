@@ -19,6 +19,18 @@ h1 {
     font-size: 5rem;
 }
 
+input {
+    height: 2rem;
+    border: none;
+    border-radius: 10px;
+    &:focus {
+        outline: none;
+    }
+    padding: 0 1rem;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+}
+
 .title {
     &:after {
         position: absolute;
@@ -57,19 +69,20 @@ p {
     position: absolute;
     top: 10px;
     right: 25px;
-
-    
 }
 
-.album {
+.card {
     display: flex;
     flex-direction: row;
     padding: 0.5rem;
-    position: relative;
     border-radius: 15px;
+}
+
+.album {
+    position: relative;
     padding-right: 1.5rem;
-    box-shadow: 8px 8px 14px 2px rgba(0, 0, 0, 0.15);
     transition: all 0.2s ease-in-out;
+    box-shadow: 8px 8px 14px 2px rgba(0, 0, 0, 0.15);
     img {
         width: 100px;
         height: 100px;
@@ -91,6 +104,61 @@ p {
         transform: scale(1.01);
         box-shadow: 8px 8px 12px 2px rgba(0, 0, 0, 0.2);
     }
+}
 
+.add-new-btn {
+    margin: 0 1rem;
+    position: relative;
+    button {
+        background: none;
+        border: none;
+        color: rgb(132, 132, 132);
+        cursor: pointer;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        transition: all 0.2s ease-in-out;
+        span {
+            font-size: 4rem;
+        }
+        &:hover {
+            color: lighten(rgb(132, 132, 132), 10%);
+        }
+    }
+    p {
+        margin-left: 1rem;
+        font-size: 1.5rem;
+        font-weight: 300;
+        color: inherit;
+    }   
+}
 
+.add-new {
+    position: absolute;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 20rem;
+    left: 15rem;
+    top: 1rem;
+    height: 12rem;
+    box-shadow: 8px 8px 14px 2px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(225deg, rgba(246, 13, 167, 0.7) 60%, rgba(180, 180, 180, 0.1) 100%);
+
+    input {
+        width: 70%;
+    }
+
+    button {
+        text-transform: capitalize;
+        color: antiquewhite;
+        font-weight: 400;
+        font-size: 1.5rem;
+        margin-top: 0.5rem;
+
+        &:hover {
+            color: #ffffff;
+        }
+    }
 }

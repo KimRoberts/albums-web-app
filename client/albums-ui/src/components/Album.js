@@ -2,7 +2,7 @@ import React from 'react'
 
 const Album = ({album, deleteAlbum}) => {
   return (
-    <div className="album">
+    <div className="card album">
       <img src="https://upload.wikimedia.org/wikipedia/en/3/3b/Dark_Side_of_the_Moon.png" />
       <div className="info">
         <h1>{album.title}</h1>
