@@ -1,0 +1,114 @@
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: columns;
+          flex-direction: columns;
+  margin-top: 20vh;
+  margin-left: 20vw;
+  padding-bottom: 300px;
+}
+
+h1 {
+  font-family: 'Roboto', sans-serif;
+  text-transform: capitalize;
+  font-weight: 600;
+  font-size: 5rem;
+}
+
+.title:after {
+  position: absolute;
+  left: 20vw;
+  top: calc(20vh + 5rem + 10px);
+  content: '';
+  background: #000000;
+  width: 400px;
+  height: 11px;
+}
+
+p {
+  font-family: 'Roboto', sans-serif;
+  text-transform: capitalize;
+  font-weight: 300;
+  color: #222222;
+}
+
+.list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 1.5rem;
+}
+
+.album-list {
+  margin-top: 2rem;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 25px;
+}
+
+.album {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  padding: 0.5rem;
+  position: relative;
+  border-radius: 15px;
+  padding-right: 1.5rem;
+  -webkit-box-shadow: 8px 8px 14px 2px rgba(0, 0, 0, 0.15);
+          box-shadow: 8px 8px 14px 2px rgba(0, 0, 0, 0.15);
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.album img {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+}
+
+.album h1 {
+  font-size: 2rem;
+  font-weight: 400;
+  margin-right: 2rem;
+  width: 30rem;
+  max-width: 30rem;
+}
+
+.album .info {
+  margin-left: 1rem;
+  margin-top: 0.5rem;
+}
+
+.album:hover {
+  -webkit-transform: scale(1.01);
+          transform: scale(1.01);
+  -webkit-box-shadow: 8px 8px 12px 2px rgba(0, 0, 0, 0.2);
+          box-shadow: 8px 8px 12px 2px rgba(0, 0, 0, 0.2);
+}
+/*# sourceMappingURL=app.css.map */
