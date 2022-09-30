@@ -41,8 +41,13 @@ public class AlbumPostgresDao implements IAlbumDao {
 
 	@Override
 	public Album updateAlbumById(int id, Album album) {
-		// TODO Auto-generated method stub
-		return null;
+		String query = String.format("UPDATE albums SET title=\'%s\', artist=\'%s\', year=%d WHERE id=%d",
+									album.getTitle(),
+									album.getArtist(),
+									album.getYear(),
+									id);
+		jdbcTemplate.update(query);
+		return getAlbumById(id);
 	}
 
 	@Override
