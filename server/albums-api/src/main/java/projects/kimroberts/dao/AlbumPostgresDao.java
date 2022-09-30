@@ -19,6 +19,7 @@ public class AlbumPostgresDao implements IAlbumDao {
 	private static final String TITLE_COL = "title";
 	private static final String ARTIST_COL = "artist";
 	private static final String YEAR_COL = "year";
+	private static final String DONE_COL = "done";
 	
 	private JdbcTemplate jdbcTemplate;
 	private SimpleJdbcInsert simpleJdbcInsert;
@@ -53,11 +54,12 @@ public class AlbumPostgresDao implements IAlbumDao {
 
 	@Override
 	public Album updateAlbumById(int id, Album album) {
-		String query = String.format("UPDATE %s SET %s=\'%s\', %s=\'%s\', %s=%d WHERE %s=%d",
+		String query = String.format("UPDATE %s SET %s=\'%s\', %s=\'%s\', %s=%d, %s=%s WHERE %s=%d",
 									TABLE_NAME,
 									TITLE_COL, album.getTitle(),
 									ARTIST_COL, album.getArtist(),
 									YEAR_COL, album.getYear(),
+									DONE_COL, album.isDone(),
 									ID_COL, id);
 		jdbcTemplate.update(query);
 		return getAlbumById(id);
@@ -84,9 +86,10 @@ public class AlbumPostgresDao implements IAlbumDao {
 	@Override
 	public Album createAlbum(Album album) {
 		Map<String, Object> values = new HashMap<>();
-		values.put("title", album.getTitle());
-		values.put("artist", album.getArtist());
-		values.put("year", album.getYear());
+		values.put(TITLE_COL, album.getTitle());
+		values.put(ARTIST_COL, album.getArtist());
+		values.put(YEAR_COL, album.getYear());
+		values.put(DONE_COL, album.isDone());
 		int id = (int) simpleJdbcInsert.executeAndReturnKey(values);
 		return getAlbumById(id);
 	}
