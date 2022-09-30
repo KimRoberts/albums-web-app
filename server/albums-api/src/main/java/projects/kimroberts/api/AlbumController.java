@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -46,6 +47,11 @@ public class AlbumController {
 		} catch (NoSuchElementException e) {
 			return null;
 		}
+	}
+	
+	@DeleteMapping("/{id}")
+	public void deleteAlbumById(@PathVariable("id") int id) {
+		albumService.deleteAlbumById(id);
 	}
 
 }

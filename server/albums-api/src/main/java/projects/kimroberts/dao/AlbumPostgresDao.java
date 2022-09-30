@@ -52,7 +52,8 @@ public class AlbumPostgresDao implements IAlbumDao {
 
 	@Override
 	public void deleteAlbumById(int id) {
-		// TODO Auto-generated method stub
+		String query = String.format("DELETE FROM albums WHERE id=%d", id);
+		jdbcTemplate.update(query);
 	}
 
 	@Override
