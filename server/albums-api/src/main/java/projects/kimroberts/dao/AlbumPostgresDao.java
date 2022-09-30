@@ -36,7 +36,7 @@ public class AlbumPostgresDao implements IAlbumDao {
 
 	@Override
 	public List<Album> getAllAlbums() {
-		String query = String.format("SELECT * FROM %s;", TABLE_NAME);
+		String query = String.format("SELECT * FROM %s ORDER BY %s ASC;", TABLE_NAME, ID_COL);
 		return jdbcTemplate.query(query, albumRowMapper);
 	}
 
