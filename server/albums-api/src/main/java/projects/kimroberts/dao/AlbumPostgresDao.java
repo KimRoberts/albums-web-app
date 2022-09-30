@@ -28,4 +28,27 @@ public class AlbumPostgresDao implements IAlbumDao {
 		return jdbcTemplate.query(query, new AlbumRowMapper());
 	}
 
+	@Override
+	public Album getAlbumById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Album updateAlbumById(int id, Album album) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteAlbumById(int id) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public List<Album> searchAlbums(String searchPattern) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
