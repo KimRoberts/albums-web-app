@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import Album from './components/Album';
 import './styles/app.css';
@@ -7,7 +7,9 @@ import AddNew from './components/AddNew';
 function App() {
 
   const [albums, setAlbums] = useState([]);
+  const [displayAlbums, setDisplayAlbums] = useState([]);
   const [showAddNew, setShowAddNew] = useState(false);
+  const [dropdownValue, setDropdownValue] = useState("all");
 
   useEffect(() => {
     axios
@@ -19,6 +21,26 @@ function App() {
         console.error(err);
       })
   }, [])
+
+  useEffect(() => {
+    switch(dropdownValue) {
+      case "all":
+        setDisplayAlbums(albums);
+        break;
+      case "done":
+        setDisplayAlbums(albums.filter((album) => {
+          return album.done;
+        }));
+        break;
+      case "not-done":
+        setDisplayAlbums(
+          albums.filter((album) => {
+            return !album.done
+          })
+        );
+        break;
+    }
+  }, [dropdownValue, albums])
 
   const deleteAlbum = (id) => {
     axios
@@ -53,13 +75,32 @@ function App() {
       });
   }
 
+  const updateAlbum = (album) => {
+    axios
+      .put(`http://localhost:8080/api/v1/albums/${album.id}`, album)
+      .then((res) => {
+        const newAlbums = albums.map((a) => {
+          return a.id === album.id ? album : a;
+        });
+        setAlbums(newAlbums);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+
   return (
     <>
       <h1 className="title">albums.</h1>
+      <select className='select' value={dropdownValue} onChange={(e) => {setDropdownValue(e.target.value)}}>
+        <option value="all">All</option>
+        <option value="done">Done</option>
+        <option value="not-done">Not Done</option>
+      </select>
       <div className="list album-list">
-        {albums.map((album) => {
+        {displayAlbums.map((album) => {
           return (
-            <Album key={album.id} album={album} deleteAlbum={deleteAlbum} />
+            <Album key={album.id} album={album} deleteAlbum={deleteAlbum} updateAlbum={updateAlbum} />
           );
         })}
         <div className="card add-new-btn">

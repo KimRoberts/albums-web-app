@@ -8,18 +8,21 @@ public class Album {
 	private String title;
 	private String artist;
 	private int year;
+	private boolean done;
 	
 	public Album() {}
 	
 	public Album(@JsonProperty("id") int id, 
 					@JsonProperty("title") String title, 
 					@JsonProperty("artist") String artist, 
-					@JsonProperty("year") int year) {
-		super();
+					@JsonProperty("year") int year,
+					@JsonProperty("done") boolean done) {
+
 		this.id = id;
 		this.title = title;
 		this.artist = artist;
 		this.year = year;
+		this.done = done;
 	}
 
 
@@ -55,6 +58,15 @@ public class Album {
 	public void setYear(int year) {
 		this.year = year;
 	}
+
+	public boolean isDone() {
+		return done;
+	}
+
+	public void setDone(boolean done) {
+		this.done = done;
+	}
+
 	
 	
 }

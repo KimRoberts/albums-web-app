@@ -31,6 +31,22 @@ input {
     font-size: 1rem;
 }
 
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+select {
+    border: none;
+    margin-top: 2rem;
+    margin-left: 85%;
+    font-family: 'Roboto', sans-serif;
+    &:focus {
+        outline: none;
+    }
+}
+
 .title {
     &:after {
         position: absolute;
@@ -61,11 +77,8 @@ p {
 }
 
 .close-btn {
-    background: none;
-    border: none;
     width: 15px;
     height: 15px;
-    cursor: pointer;
     position: absolute;
     top: 10px;
     right: 25px;
@@ -91,9 +104,9 @@ p {
     h1 {
         font-size: 2rem;
         font-weight: 400;
-        margin-right: 2rem;
-        width: 30rem;
-        max-width: 30rem;
+        // margin-right: 2rem;
+        width: 20rem;
+        max-width: 20rem;
     }
     .info {
         margin-left: 1rem;
@@ -110,10 +123,7 @@ p {
     margin: 0 1rem;
     position: relative;
     button {
-        background: none;
-        border: none;
         color: rgb(132, 132, 132);
-        cursor: pointer;
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -160,5 +170,12 @@ p {
         &:hover {
             color: #ffffff;
         }
+    }
+}
+
+.toggle {
+    margin-right: 4rem;
+    span {
+        font-size: xx-large;
     }
 }
