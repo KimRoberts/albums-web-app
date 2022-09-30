@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,39 +31,46 @@ public class AlbumController {
 	}
 	
 	@GetMapping
-	public List<Album> getAllAlbums(@RequestParam(name="search", required=false) String searchPattern) {
+	public ResponseEntity<List<Album>> getAllAlbums(@RequestParam(name="search", required=false) String searchPattern) {
+		List<Album> albums;
 		if (searchPattern == null) {
-			return albumService.getAllAlbums();
+			albums = albumService.getAllAlbums();
+		} else {
+			albums = albumService.searchAlbums(searchPattern);
 		}
-		return albumService.searchAlbums(searchPattern);
+		return new ResponseEntity<List<Album>>(albums, HttpStatus.OK);
 	}
 	
 	@GetMapping("/{id}")
-	public Album getAlbumById(@PathVariable("id") int id) {
+	public ResponseEntity<Album> getAlbumById(@PathVariable("id") int id) {
 		try {
-			return albumService.getAlbumById(id);
+			Album album = albumService.getAlbumById(id);
+			return new ResponseEntity<Album>(album, HttpStatus.OK);
 		} catch (NoSuchElementException e) {
-			return null;
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 		}
 	}
 	
 	@PutMapping("/{id}")
-	public Album updateAlbumById(@PathVariable("id") int id, @RequestBody Album album) {
+	public ResponseEntity<Album> updateAlbumById(@PathVariable("id") int id, @RequestBody Album album) {
 		try {
-			return albumService.updateAlbumById(id, album);			
+			Album updatedAlbum = albumService.updateAlbumById(id, album); 
+			return new ResponseEntity<Album>(updatedAlbum, HttpStatus.OK);
 		} catch (NoSuchElementException e) {
-			return null;
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 		}
 	}
 	
 	@DeleteMapping("/{id}")
-	public void deleteAlbumById(@PathVariable("id") int id) {
+	public ResponseEntity<String> deleteAlbumById(@PathVariable("id") int id) {
 		albumService.deleteAlbumById(id);
+		return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
 	}
 	
 	@PostMapping
-	public Album createAlbum(@RequestBody Album album) {
-		return albumService.createAlbum(album);
+	public ResponseEntity<Album> createAlbum(@RequestBody Album album) {
+		Album createdAlbum = albumService.createAlbum(album); 
+		return new ResponseEntity<Album>(createdAlbum, HttpStatus.CREATED);
 	}
 	
 
