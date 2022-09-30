@@ -38,5 +38,9 @@ public class AlbumService {
 	public List<Album> searchAlbums(String searchPattern) {
 		return albumDao.searchAlbums(searchPattern);
 	}
+	
+	public Album createAlbum(Album album) {
+		return albumDao.createAlbum(album);
+	}
 
 }

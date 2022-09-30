@@ -1,11 +1,14 @@
 package projects.kimroberts.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import projects.kimroberts.model.album.Album;
@@ -15,12 +18,16 @@ import projects.kimroberts.model.album.AlbumRowMapper;
 public class AlbumPostgresDao implements IAlbumDao {
 	
 	private JdbcTemplate jdbcTemplate;
+	private SimpleJdbcInsert simpleJdbcInsert;
 	
 	//test
 	
 	@Autowired
 	public AlbumPostgresDao(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
+		this.simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate)
+									.withTableName("albums")
+									.usingGeneratedKeyColumns("id");
 	}
 
 	@Override
@@ -60,6 +67,16 @@ public class AlbumPostgresDao implements IAlbumDao {
 	public List<Album> searchAlbums(String searchPattern) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Album createAlbum(Album album) {
+		Map<String, Object> values = new HashMap<>();
+		values.put("title", album.getTitle());
+		values.put("artist", album.getArtist());
+		values.put("year", album.getYear());
+		int id = (int) simpleJdbcInsert.executeAndReturnKey(values);
+		return getAlbumById(id);
 	}
 
 }
